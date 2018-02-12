@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "654042904664",
+    "firebase_url": "https://exchanger2-4b819.firebaseio.com",
+    "project_id": "exchanger2-4b819",
+    "storage_bucket": "exchanger2-4b819.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654042904664:android:9d26622519109fa5",
+        "android_client_info": {
+          "package_name": "com.example.tomek.exchanger2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654042904664-tr9ihumk9gs13glieuq9p309asd4uvo6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjAme2he1cO6zSO6fnvli9wVr2Brq6lG4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
