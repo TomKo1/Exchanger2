@@ -8,4 +8,7 @@
     <string name="btn_logIn">Log in</string>
     <string name="user_login_txt">User Login</string>
     <string name="user_registration_txt">User registration</string>
+    <string name="profile_desc">Profile</string>
+    <string name="log_out">Log out</string>
+    <string name="logged_user_greeting">Welcome %s</string>
 </resources>

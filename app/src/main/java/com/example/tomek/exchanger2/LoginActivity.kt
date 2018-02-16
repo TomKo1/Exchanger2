@@ -4,9 +4,11 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.View
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,14 +21,20 @@ class LoginActivity : AppCompatActivity()  {
 
     // var representing authentication object
     private var fireBaseAuthe : FirebaseAuth = FirebaseAuth.getInstance()
-    / Progress Bar to show the progress of registration process
+    // Progress Bar to show the progress of registration process
     private  var  progressDialog : ProgressDialog = ProgressDialog(this)
-    /
+    //
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         btnLogIn.setOnClickListener(btnListener)
+        // user can be already logged in -> we should check it
+        if(fireBaseAuthe.currentUser != null){
+            // start the profile activity
+            finish()
+            startActivity(Intent(this,ProfileActivity::class.java))
+        }
     }
 
     // btnListner with a special lambda
@@ -36,13 +44,13 @@ class LoginActivity : AppCompatActivity()  {
             R.id.registerButton -> logIn()
             R.id.textSignIn -> {
                 finish() // finish method runs onDestroy method (Stack)
-                startActivity(Intent(this, MainActivity.class))     // ???????
+                startActivity(Intent(this, MainActivity::class.java))
             }
         }
     }
 
 
-    fun logIn():Unit{
+    fun logIn(){
         // log in the use
         var email:String=etLogEmail.text.toString().trim()
         var password:String = etLogPassword.text.toString().trim()
@@ -58,17 +66,19 @@ class LoginActivity : AppCompatActivity()  {
 
 
         fireBaseAuthe.signInWithEmailAndPassword(email, password).
-                addOnCompleteListener(this, OnCompleteListener {
-                    view ->
-                    if(view.isSuccessful){
-                        // user is successfully registered and loggwed in
-                        // we will start the profile activity here
-                        Toast.makeText(this,"Registered Successfully",Toast.LENGTH_SHORT).show()
+                addOnCompleteListener(this, OnCompleteListener<AuthResult> {
+                    task ->
+                        progressDialog.dismiss()
 
-                    }else{
-                        Toast.makeText(this," Failed to register",Toast.LENGTH_SHORT).show()
+                        if(task.isSuccessful){
+                            // start the  user activity
+                            finish()
+                            startActivity(Intent(this,ProfileActivity::class.java))
 
-                    }
+                        }else{
+                            Toast.makeText(this,"Failed to Log In",Toast.LENGTH_LONG).show()
+                        }
+
 
                 })
 
