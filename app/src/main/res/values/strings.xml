@@ -4,4 +4,8 @@
     <string name="password_hint">Enter your password</string>
     <string name="btn_register">Register</string>
     <string name="already_registered">Already Registered? Sign in here</string>
+    <string name="sign_up">Not have an account? Sign up here</string>
+    <string name="btn_logIn">Log in</string>
+    <string name="user_login_txt">User Login</string>
+    <string name="user_registration_txt">User registration</string>
 </resources>
