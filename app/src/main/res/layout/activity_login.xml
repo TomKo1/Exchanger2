@@ -51,7 +51,9 @@
         android:text="@string/sign_up"
         android:textAlignment="center"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="267dp" />
+        tools:layout_editor_absoluteY="267dp"
+        android:clickable="true"
+        android:focusable="true"/>
 
 
 </LinearLayout>

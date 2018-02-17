@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity() {
 
-    // var representing authentication object
     private var fireBaseAuthe : FirebaseAuth = FirebaseAuth.getInstance()
 
 
@@ -18,15 +17,12 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        //just for make sure
         if(fireBaseAuthe.currentUser == null){
-            // start the profile activity
             finish()
             startActivity(Intent(this,MainActivity::class.java))
             return
         }
 
-        //"Welcome " + fireBaseAuthe.currentUser!!.email.toString()
         var currentUsrEmail:String=fireBaseAuthe.currentUser!!.email.toString()
         txtLoggedIn.text =String.format(resources.getString(R.string.logged_user_greeting),currentUsrEmail)
 
