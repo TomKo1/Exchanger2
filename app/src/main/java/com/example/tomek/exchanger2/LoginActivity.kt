@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity()  {
         // user can be already logged in -> we should check it
         if(fireBaseAuthe.currentUser != null){
             finish()
-            startActivity(Intent(this,ProfileActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         }
         progressDialog  = ProgressDialog(this)
         textSignUp.setOnClickListener(clickListener)
@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity()  {
             R.id.btnLogIn -> logIn()
             R.id.textSignUp -> {
                 finish()
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, RegisterActivity::class.java))
             }
         }
     }
@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity()  {
 
                         if(task.isSuccessful){
                             finish()
-                            startActivity(Intent(this,ProfileActivity::class.java))
+                            startActivity(Intent(this, MainActivity::class.java))
 
                         }else{
                             Toast.makeText(this,"Failed to Log In",Toast.LENGTH_LONG).show()
