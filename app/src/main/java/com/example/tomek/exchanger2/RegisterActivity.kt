@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_register.*
@@ -75,11 +76,12 @@ class RegisterActivity : AppCompatActivity() {
                         finish()
                         startActivity(Intent(this, MainActivity::class.java))
 
-                    }else{
-                        Toast.makeText(this," Failed to register",Toast.LENGTH_SHORT).show()
                     }
+                }).addOnFailureListener({
+                            e: Exception ->
+                                        Toast.makeText(this,e.message,Toast.LENGTH_SHORT).show()
 
-                })
+                    })
 
 
 

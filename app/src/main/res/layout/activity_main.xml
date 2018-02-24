@@ -25,7 +25,20 @@
         android:fitsSystemWindows="true"
         android:scrollbars="none"
         app:headerLayout="@layout/nav_header_profile"
-        app:menu="@menu/activity_profile_drawer"/>
+        app:menu="@menu/activity_profile_drawer">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnDrawLogOut"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_log_out_height"
+                android:gravity="center"
+                android:text="@string/log_out" />
+        </LinearLayout>
+    </android.support.design.widget.NavigationView>
 
 
 

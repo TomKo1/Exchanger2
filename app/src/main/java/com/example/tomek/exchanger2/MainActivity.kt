@@ -3,14 +3,10 @@ package com.example.tomek.exchanger2
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.annotation.NonNull
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBar
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Gravity
 import android.view.MenuItem
 import android.widget.Toast
-import android.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -34,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
         configDrawer()
 
+        cofigLogOutBtn()
+
 
 
         // temporary code to detect which user is logged
@@ -46,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
 //fireBaseAuthe.signOut()
 
+    //configuration of Drawer and Hamburger
     private fun configDrawer(){
         val toggle = ActionBarDrawerToggle(this, drawer_layout,R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         val actionBar = supportActionBar
@@ -90,6 +89,33 @@ class MainActivity : AppCompatActivity() {
             drawer_layout.openDrawer(Gravity.START)
         }
     }
+
+    //TODO Handle LogOut errors
+    // config of log out btn
+    private fun cofigLogOutBtn(){
+        btnDrawLogOut.setOnClickListener{ view ->
+        FirebaseAuth.getInstance().signOut()
+        finish()
+        startActivity(Intent(this, LoginActivity::class.java))
+
+        }
+    }
+
+
+
+    /*
+        AuthUI.getInstance()
+        .signOut(this)
+        .addOnCompleteListener(new OnCompleteListener<Void>() {
+            public void onComplete(@NonNull Task<Void> task) {
+                // user is now signed out
+                startActivity(new Intent(MyActivity.this, SignInActivity.class));
+                finish();
+            }
+        });
+
+
+     */
 
 
 

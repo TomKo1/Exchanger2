@@ -64,12 +64,11 @@ class LoginActivity : AppCompatActivity()  {
                             finish()
                             startActivity(Intent(this, MainActivity::class.java))
 
-                        }else{
-                            Toast.makeText(this,"Failed to Log In",Toast.LENGTH_LONG).show()
                         }
-
-
-                })
+                }).addOnFailureListener{
+                        e:Exception ->
+                            Toast.makeText(this,e.message,Toast.LENGTH_SHORT).show()
+                    }
 
 
 
