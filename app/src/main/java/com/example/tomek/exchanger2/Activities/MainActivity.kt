@@ -1,4 +1,4 @@
-package com.example.tomek.exchanger2
+package com.example.tomek.exchanger2.Activities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -9,11 +9,33 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
+import android.util.Log
+import com.example.tomek.exchanger2.ProjectValues
+import com.example.tomek.exchanger2.R
+import com.google.firebase.auth.FirebaseUser
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var fireBaseAuthe : FirebaseAuth
+
+    // AuthStateListener reacting for signOut operations
+    private val mAuthStateListener: FirebaseAuth.AuthStateListener =
+        FirebaseAuth.AuthStateListener { firebaseAuth ->
+            val user = firebaseAuth.currentUser
+            if (user != null) {
+                Log.d(ProjectValues.MAINACTIVITY_TAG, "onAuthStateChanged: signed_in: " + user.uid)
+            } else {
+                Log.d(ProjectValues.MAINACTIVITY_TAG, "onAuthStateChanged: signed_out")
+                Toast.makeText(this, getString(R.string.signed_out), Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                finish()
+                startActivity(intent)
+            }
+        }
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,11 +44,13 @@ class MainActivity : AppCompatActivity() {
 
         // emergency check if the user is logged
         fireBaseAuthe = FirebaseAuth.getInstance()
-        if(fireBaseAuthe.currentUser == null){
+
+        val user: FirebaseUser? = fireBaseAuthe.currentUser
+        if(user != null && !user.isEmailVerified ){
             finish()
-            startActivity(Intent(this, RegisterActivity::class.java))
-            return
+            startActivity(Intent(this, LoginActivity::class.java))
         }
+
 
         configDrawer()
 
@@ -36,17 +60,16 @@ class MainActivity : AppCompatActivity() {
 
         // temporary code to detect which user is logged
         var currentUsrEmail:String=fireBaseAuthe.currentUser!!.email.toString()
-        Toast.makeText(this,"Welcome "+currentUsrEmail,Toast.LENGTH_LONG).show()
+        Toast.makeText(this,getString(R.string.user_greetings_formatted,currentUsrEmail),Toast.LENGTH_LONG).show()
 
 
 
 
         }
-//fireBaseAuthe.signOut()
 
     //configuration of Drawer and Hamburger
     private fun configDrawer(){
-        val toggle = ActionBarDrawerToggle(this, drawer_layout,R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val toggle = ActionBarDrawerToggle(this, drawer_layout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         val actionBar = supportActionBar
 
         if(actionBar !=null){
@@ -90,32 +113,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //TODO Handle LogOut errors
-    // config of log out btn
+
     private fun cofigLogOutBtn(){
         btnDrawLogOut.setOnClickListener{ view ->
-        FirebaseAuth.getInstance().signOut()
-        finish()
-        startActivity(Intent(this, LoginActivity::class.java))
-
+            FirebaseAuth.getInstance().signOut()
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+        FirebaseAuth.getInstance().removeAuthStateListener(mAuthStateListener)
 
+    }
 
-    /*
-        AuthUI.getInstance()
-        .signOut(this)
-        .addOnCompleteListener(new OnCompleteListener<Void>() {
-            public void onComplete(@NonNull Task<Void> task) {
-                // user is now signed out
-                startActivity(new Intent(MyActivity.this, SignInActivity.class));
-                finish();
-            }
-        });
-
-
-     */
+//TODO add profile customization (profile pic, profile name, location ..., contact)
+//TODO change deprecated progress dialog
+    override fun onStart() {
+        super.onStart()
+        FirebaseAuth.getInstance().addAuthStateListener(mAuthStateListener)
+    }
 
 
 

@@ -1,4 +1,4 @@
-package com.example.tomek.exchanger2
+package com.example.tomek.exchanger2.Activities
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -6,9 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.tomek.exchanger2.R
+import com.example.tomek.exchanger2.checkIfLoggedAndProceedToMainActiv
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity()  {
@@ -23,11 +26,10 @@ class LoginActivity : AppCompatActivity()  {
         setContentView(R.layout.activity_login)
         fireBaseAuthe = FirebaseAuth.getInstance()
         btnLogIn.setOnClickListener(clickListener)
+
         // user can be already logged in -> we should check it
-        if(fireBaseAuthe.currentUser != null){
-            finish()
-            startActivity(Intent(this, MainActivity::class.java))
-        }
+        fireBaseAuthe.checkIfLoggedAndProceedToMainActiv(this)
+
         progressDialog  = ProgressDialog(this)
         textSignUp.setOnClickListener(clickListener)
     }
@@ -42,16 +44,18 @@ class LoginActivity : AppCompatActivity()  {
         }
     }
 
+
     // logs in the user
     fun logIn(){
         var email:String=etLogEmail.text.toString().trim()
         var password:String = etLogPassword.text.toString().trim()
+
         if(email.isEmpty() || password.isEmpty()){
-            Toast.makeText(this,"Password or E-mail is empty", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,getString(R.string.password_or_email_empty), Toast.LENGTH_SHORT).show()
             return
         }
 
-        progressDialog.setMessage("Loging in...")
+        progressDialog.setMessage(getString(R.string.loging_in_dots))
         progressDialog.show()
 
 
@@ -61,9 +65,14 @@ class LoginActivity : AppCompatActivity()  {
                         progressDialog.dismiss()
 
                         if(task.isSuccessful){
-                            finish()
-                            startActivity(Intent(this, MainActivity::class.java))
-
+                            val currentUser: FirebaseUser? = fireBaseAuthe.currentUser
+                            if(currentUser!!.isEmailVerified) {
+                                finish()
+                                startActivity(Intent(this, MainActivity::class.java))
+                            }else{
+                                finish()
+                                startActivity(Intent(this, ActivityVerifyEmail::class.java))
+                            }
                         }
                 }).addOnFailureListener{
                         e:Exception ->

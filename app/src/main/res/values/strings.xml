@@ -16,9 +16,21 @@
     <string name="menu_search">Search</string>
     <string name="menu_profile">Profile</string>
     <string name="title_activity_main2">Main2Activity</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
+    <string name="title_activity_verify_email">VerifyEmailActivity</string>
+    <string name="verify_email_msg">Please verify your email</string>
+    <string name="btn_resend_email">Resend verification Email</string>
+
+    <!-- *****************************************************************-->
+
+    <string name="password_or_email_empty">Password or E-mail is empty</string>
+    <string name="loging_in_dots">Loging in...</string>
+    <string name="signed_out">Signed out</string>
+    <string name="registering_dots">Registering...</string>
+    <string name="registered_success_please_confirm_email">Registered Successfully - please confirm your email</string>
+    <string name="user_greetings_formatted">Welcome %1$s</string>
+
+
 </resources>
