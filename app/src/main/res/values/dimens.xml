@@ -3,11 +3,21 @@
     <dimen name="nav_header_height">240dp</dimen>
     <dimen name="nav_header_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="circle_pic_size">100dp</dimen>
+    <dimen name="circle_pic_size_drawer">100dp</dimen>
     <dimen name="text_size">12sp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="btn_log_out_height">48dp</dimen>
+    <dimen name="circle_pic_size_profile_view">75dp</dimen>
+    <dimen name="full_profile_badge_height">150dp</dimen>
+    <dimen name="_18dp_padding_top">18dp</dimen>
+    <dimen name="_16sp_text_size">16sp</dimen>
+    <dimen name="_12sp_text_size">12sp</dimen>
+    <dimen name="_8dp_margin_Top">8dp</dimen>
+    <dimen name="_12dp_padding">12dp</dimen>
+    <dimen name="_8dp_raw">8dp</dimen>
+    <dimen name="_16dp_margin_top">16dp</dimen>
+    <dimen name="_16dp_padding">16dp</dimen>
 </resources>

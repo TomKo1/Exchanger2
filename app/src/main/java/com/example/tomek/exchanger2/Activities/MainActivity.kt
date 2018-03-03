@@ -3,6 +3,10 @@ package com.example.tomek.exchanger2.Activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Gravity
 import android.view.MenuItem
@@ -10,6 +14,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import android.util.Log
+import com.example.tomek.exchanger2.MainActivityFragments.FullProfileView
+import com.example.tomek.exchanger2.MainActivityFragments.ProfileEdit
 import com.example.tomek.exchanger2.ProjectValues
 import com.example.tomek.exchanger2.R
 import com.google.firebase.auth.FirebaseUser
@@ -56,6 +62,8 @@ class MainActivity : AppCompatActivity() {
 
         cofigLogOutBtn()
 
+        //TODO change it for the map with the nearest location of products
+        makeTansaction(FullProfileView.newInstance())
 
 
         // temporary code to detect which user is logged
@@ -84,9 +92,14 @@ class MainActivity : AppCompatActivity() {
         nav_view.setNavigationItemSelectedListener {
             item ->
                 when(item.itemId){
-
+                    R.id.nav_profile ->makeTansaction(FullProfileView.newInstance())
+                    R.id.nav_chat -> makeTansaction(FullProfileView.newInstance())
+                    R.id.nav_search->makeTansaction(FullProfileView.newInstance())
+                    R.id.nav_edit_profile->makeTansaction(ProfileEdit.newInstance())
+                    R.id.nav_settings->makeTansaction(FullProfileView.newInstance())
                 }
-                drawer_layout.closeDrawer(Gravity.START)
+
+              toggle()
 
                 true
         }
@@ -120,14 +133,39 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    // here we add fragment programatically
+    private fun makeTansaction( fragmentToAdd: Fragment){
+
+        if(drawer_layout.isDrawerOpen(Gravity.START)){
+            drawer_layout.closeDrawer(Gravity.START)
+            Toast.makeText(this,"Closing Drawer",Toast.LENGTH_SHORT).show()
+        }
+
+        val fragmentManager: FragmentManager = supportFragmentManager
+
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.replace(R.id.mainActivFrag, fragmentToAdd)
+
+        fragmentTransaction.addToBackStack(null)
+
+        fragmentTransaction.commit()
+
+
+
+    }
+
+
     override fun onStop() {
         super.onStop()
         FirebaseAuth.getInstance().removeAuthStateListener(mAuthStateListener)
 
     }
 
-//TODO add profile customization (profile pic, profile name, location ..., contact)
+//TODO code it -> profile customization (profile pic, profile name, location ..., contact)
 //TODO change deprecated progress dialog
+
     override fun onStart() {
         super.onStart()
         FirebaseAuth.getInstance().addAuthStateListener(mAuthStateListener)

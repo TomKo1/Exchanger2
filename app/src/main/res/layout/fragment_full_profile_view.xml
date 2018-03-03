@@ -1,0 +1,60 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!-- TODO add more fileds and make it like in StrefaKursow (pasek przewijnia z opcja
+    wystawionych przedmiotów oraz informacje jak miasto, odleglosc, kraj...-->
+
+    <LinearLayout
+        android:id="@+id/profile_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/full_profile_badge_height"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/circle_pic_size_profile_view"
+            android:layout_height="@dimen/circle_pic_size_profile_view"
+            android:layout_gravity="center"
+            android:src="@drawable/sample_profile_pic"
+            android:id="@+id/circleView" />
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_18dp_padding_top"
+            android:textSize="@dimen/_16sp_text_size"
+            android:text="@string/profile_name"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <TextView
+            android:id="@+id/country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12sp_text_size"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_8dp_margin_Top"
+            android:text="@string/country_location" />
+
+    </LinearLayout>
+
+
+
+    <!-- TODO implement user profile options, selling object, chat...-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/profile_header"
+        android:text="Profile_options"
+        android:textAlignment="center"
+        android:paddingTop="@dimen/_18dp_padding_top"/>
+
+
+</RelativeLayout>
