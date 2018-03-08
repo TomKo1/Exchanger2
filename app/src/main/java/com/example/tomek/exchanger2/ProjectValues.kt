@@ -8,6 +8,7 @@ class ProjectValues {
 
    companion object {
        const val MAINACTIVITY_TAG:String = "MainActivity:"
+       const val USERS_NODE_TAG:String = "users"
    }
 
 }

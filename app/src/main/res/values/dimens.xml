@@ -20,4 +20,6 @@
     <dimen name="_8dp_raw">8dp</dimen>
     <dimen name="_16dp_margin_top">16dp</dimen>
     <dimen name="_16dp_padding">16dp</dimen>
+    <dimen name="_10sp_text_size">10sp</dimen>
+    <dimen name="_0dp_margin">0dp</dimen>
 </resources>

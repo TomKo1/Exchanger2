@@ -33,17 +33,21 @@
     <string name="user_greetings_formatted">Welcome %1$s</string>
     <string name="profile_name">TomKo1</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="country_location">Poland</string>
     <string name="select_birth_date">Birth Date</string>
     <string name="save_edit">Save edit</string>
     <string name="edit_profile_country">Edit Profile Country</string>
     <string name="edit_profile_phone">Edit profile phone</string>
-    <string name="edit_profile_hobby">Edit profile hobby</string>
+    <string name="edit_profile_description">Edit profile description</string>
     <string name="edit_profile_name">Edit Profile name</string>
     <string name="menu_edit_profile">Edit profile</string>
     <string name="menu_char">Chat</string>
     <string name="menu_submenu_settings">Settings</string>
+    <string name="edit_fields_not_empty">All fields must be filled</string>
+    <string name="profile_info_updated">Update successful</string>
+    <string name="error_occured_pls_try_later">Error occures - please try later.</string>
+    <string name="please_click_btn_to_sel_the_date">Please click \'Birth Date\' to select the date</string>
+    <string name="initial_edit_desc_word_count">100</string>
 
 
 </resources>

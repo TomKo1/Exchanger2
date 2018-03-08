@@ -7,6 +7,8 @@ import com.example.tomek.exchanger2.Activities.ActivityVerifyEmail
 import com.example.tomek.exchanger2.Activities.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  *  extension functions for usage in Project -> used instead of Java's utility classes
@@ -43,6 +45,16 @@ fun FirebaseAuth.projectSendActivationEmail( activity: AppCompatActivity, isRegi
                 }
             }
     }
+}
+
+
+// generates date from parts in format used all over project
+fun String.Companion.generateLocalSensitiveDate( y:Int, m:Int, d:Int ):String{
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.set(y,m,d)
+        val simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+        val date:String = simpleDateFormat.format(calendar.time)
+        return date
 }
 
 

@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/profile_name"
+        android:id="@+id/edit_profile_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/edit_profile_name"
@@ -20,7 +20,7 @@
         android:singleLine="true" />
 
     <EditText
-        android:id="@+id/profile_country"
+        android:id="@+id/edit_profile_country"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/edit_profile_country"
@@ -34,7 +34,7 @@
         android:singleLine="true" />
 
     <EditText
-        android:id="@+id/profile_phone"
+        android:id="@+id/edit_profile_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/edit_profile_phone"
@@ -47,19 +47,33 @@
         android:layout_marginTop="@dimen/_8dp_margin_Top"
         android:singleLine="true" />
 
-    <EditText
-        android:id="@+id/profile_hobby"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_profile_hobby"
-        android:inputType="text"
-        android:maxLines="1"
-        android:padding="@dimen/_12dp_padding"
-        android:textSize="@dimen/_12sp_text_size"
-        android:background="@drawable/bottom_border"
-        android:textColor="@color/colorBlack"
-        android:layout_marginTop="@dimen/_8dp_margin_Top"
-        android:singleLine="true" />
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_8dp_margin_Top">
+        <EditText
+            android:id="@+id/edit_profile_description"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="match_parent"
+            android:hint="@string/edit_profile_description"
+            android:inputType="text|textMultiLine"
+            android:maxLines="2"
+            android:maxLength="100"
+            android:layout_margin="@dimen/_0dp_margin"
+            android:textSize="@dimen/_12sp_text_size"
+            android:background="@drawable/bottom_border"
+            android:textColor="@color/colorBlack"
+            android:layout_marginTop="@dimen/_8dp_margin_Top" />
+        <TextView
+            android:id="@+id/edit_profile_description_word_count"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:text="@string/initial_edit_desc_word_count"
+            android:layout_height="match_parent"
+            android:background="@drawable/bottom_border" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/select_date"
@@ -68,22 +82,24 @@
         android:layout_marginTop="@dimen/_8dp_margin_Top"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/profile_birth"
+        <TextView
+            android:id="@+id/edit_profile_birth"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="7"
-            android:inputType="text"
+            android:text="@string/please_click_btn_to_sel_the_date"
+            android:clickable="true"
+            android:focusable="true"
             android:maxLines="1"
             android:padding="@dimen/_12dp_padding"
-            android:textSize="@dimen/_12sp_text_size"
+            android:textSize="@dimen/_10sp_text_size"
             android:background="@drawable/bottom_border"
             android:textColor="@color/colorBlack"
             android:layout_marginTop="@dimen/_8dp_margin_Top"
             android:singleLine="true" />
 
         <Button
-            android:id="@+id/profile_birth_button"
+            android:id="@+id/edit_profile_birth_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8dp_margin_Top"
@@ -95,7 +111,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/save_edit_button"
+        android:id="@+id/edit_save_edit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8dp_raw"
